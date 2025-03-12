@@ -1,9 +1,9 @@
-<h1># Курс «Data Science: машинное обучение и нейронные сети»</h1>
+<h2># Курс «Data Science: машинное обучение и нейронные сети»</h2>
 <p>
     Автор: Сикидина Татьяна
-Репозиторий содержит решения домашних работ курса по Data Science
+    Репозиторий содержит решения домашних работ курса по Data Science
 </p>
-<b># Содержание</b>
+<h2># Содержание</h2>
 <ul>
     <li><a href="#hm1">homework_1</a></li>
     <li><a href="#hm2">homework_2</a></li>
@@ -11,7 +11,7 @@
     <li><a href="#hm4">homework_4</a></li>
     <li><a href="#hm5">homework_5</a></li>
 </ul>
-<b id='hm1' style="font-size: 20px"># homework_1</b></br>
+<h2 id='hm1'># homework_1</h2></br>
 <p>
     <b>Описане:</b>
     <p>Работа с различными типами данных (списки, кортежи, словари, множество) и функциями</p>
@@ -31,9 +31,9 @@
         </ol>        
     </p>
 </p>
-<b id='hm2' style="font-size: 20px"># homework_2</b></br>
-<b id='hm3' style="font-size: 20px"># homework_3</b></br>
-<b id='hm4' style="font-size: 20px"># homework_4</b></br>
-<b id='hm5' style="font-size: 20px"># homework_5</b></br>
+<h2># homework_2</h2></br>
+<h2># homework_3</h2></br>
+<h2># homework_4</h2></br>
+<h2># homework_5</h2></br>
 
 
