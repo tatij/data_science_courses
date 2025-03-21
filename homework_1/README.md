@@ -25,9 +25,5 @@
         Реализация с помощью функций: len, append, sum, range, add, pow, keys, input, print, int. А также циклы while и for.
     </p>
 </p>
-</p>
-<h2 id='hm3'>homework_3</h2>
-<h2 id='hm4'>homework_4</h2>
-<h2 id='hm5'>homework_5</h2>
 
 
