@@ -11,7 +11,7 @@
     <ul>
         <li><b>Dataset:</b> russia-real-estate-2021</li>
         <li><b>Target:</b> Стоимость(price)</li>
-        <li><b>Features:</b> Дата продажи, этаж, этажность, количество комнат, площадь, площадь кухни, </li>
+        <li><b>Features:</b> Дата продажи(date), этаж(level), этажность(levels), количество комнат(rooms), площадь(area), площадь кухни(kitchen_area), долгота(geo_lon), ширина(geo_lat), тип здания(object_type), регион(id_region).</li>
     </ul>
 </p>
 
