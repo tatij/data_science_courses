@@ -45,8 +45,8 @@ def analysis_data(dataset):
 def corr_data(dataset):
   try:        
     correlation_matrix = dataset.corr()
-    fig, ax = plt.subplots(figsize=(12, 10))
-    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+    fig, ax = plt.subplots(figsize=(10, 8))
+    sns.heatmap(correlation_matrix.T, annot=True, cmap='coolwarm', fmt=".2f")
     plt.title('Корреляционная Матрица')
     plt.show()
     name_file = 'correlation_matrix.png'

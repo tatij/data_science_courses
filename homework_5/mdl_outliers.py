@@ -14,7 +14,7 @@ def outliers_data(dataset, columns):
       dataset['z_score'] = zscore(dataset[column])
 
       # Определение выбросов
-      threshold = 2
+      threshold = 3
       outliers = dataset[(dataset['z_score'] > threshold) | (dataset['z_score'] < -threshold)]
 
       # Подсчет количества выбросов

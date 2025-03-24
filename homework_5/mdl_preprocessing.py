@@ -4,7 +4,38 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+
+# Предобработка датасета с реккомендациями
+def preprocessing_data_recommend(dataset):
+  try:
+    # Уменьшение размерности данных, удаление не нужных столбцов
+    dataset = dataset.drop(['postal_code', 'street_id', 'id_region', 'house_id'], axis=1)
+
+    # Удаление нулевых цен
+    dataset = dataset[(dataset['price'] > 0)]
+
+    # Удаление площадей кухни -100, т.к. не понимая что это за категория
+    dataset = dataset[(dataset['kitchen_area'] >= 0)]
+
+    # Удаляем нулевые значения этажей и этажности
+    dataset = dataset[(dataset['level'] > 0) & (dataset['levels'] > 0)]
+
+    # Замена нулевых значений кухни на среднее
+    mean_value = round(dataset['kitchen_area'][dataset['kitchen_area'] > 0].mean(), 1)
+    dataset.loc[dataset['kitchen_area'] == 0, 'kitchen_area'] = mean_value
+
+    # Преобразование даты в формат datetime
+    dataset['date'] = pd.to_datetime(dataset['date'])
+
+    # Проверка предобработки
+    print(f'Всего: {len(dataset)}')
+    print(dataset.describe())
+    print(dataset.info())
+        
+    return dataset
+  except FileNotFoundError as e:
+    print(f"Ошибка при загрузке данных: {e}")
+    sys.exit(1)
 
 # Предобработка датасета
 def preprocessing_data(dataset):
@@ -34,8 +65,8 @@ def preprocessing_data(dataset):
         dataset.loc[(dataset['rooms'] <= 0) & (dataset['area'] >= area), 'rooms'] = count_rooms
       count_rooms += 1  # Увеличиваем счетчик на 1
 
-      # Преобразование даты в формат datetime
-      dataset['date'] = pd.to_datetime(dataset['date'])
+    # Преобразование даты в формат datetime
+    dataset['date'] = pd.to_datetime(dataset['date'])
 
     # Проверка предобработки
     print(f'Всего: {len(dataset)}')
@@ -58,17 +89,6 @@ def transform_date_to_int(dataset, column):
       dataset[column] = dataset['date'].astype('int64') // 10**9 
     return dataset
     
-  except FileNotFoundError as e:
-        print(f"Ошибка при загрузке данных: {e}")
-        sys.exit(1)
-
-# Стандартизация
-def scaler_data(dataset):
-  try:      
-    scaler = StandardScaler()
-    scaled_data = scaler.fit_transform(dataset)
-    scaled_df = pd.DataFrame(scaled_data, columns=dataset.columns)    
-    return scaled_df
   except FileNotFoundError as e:
         print(f"Ошибка при загрузке данных: {e}")
         sys.exit(1)

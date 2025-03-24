@@ -8,7 +8,7 @@ sys.path.append('/content/sample_data')
 import mdl_preprocessing as preproc
 
 def save_plot(fig, filename):
-    output_dir = 'sample_data/outputs'
+    output_dir = 'sample_data/outputs_recommend'
     os.makedirs(output_dir, exist_ok=True)
     file_path = os.path.join(output_dir, filename)
     fig.savefig(file_path)
@@ -17,16 +17,13 @@ def save_plot(fig, filename):
 # Визуализация выбросов
 def visual_outliers_data(dataset, column):
   try:
-    # Стандартизация признаков
-    datascaler = preproc.scaler_data(dataset[column])
-
     # Ящик с усами
-    fig, ax = plt.subplots(figsize=(10, 8))
-    sns.boxplot(data=datascaler)
+    fig, ax = plt.subplots(figsize=(6, 6))
+    sns.boxplot(data=dataset[column])
     plt.xticks(rotation=90)
-    plt.title('График для поиска выбросов')
+    plt.title(f'График для поиска выбросов {column}')
     plt.show()
-    name_file = 'outliers.png'
+    name_file = f'outliers_{column}.png'
     save_plot(fig, name_file)
   except FileNotFoundError as e:
         print(f"Ошибка при загрузке данных: {e}")
@@ -35,31 +32,16 @@ def visual_outliers_data(dataset, column):
 # Визуализация нормальности распределения target
 def visual_hist_target(dataset, target):
   try:
-    fig, ax = plt.subplots(figsize=(10, 8))
-    sns.histplot(dataset[target], kde=True)
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.histplot(dataset[target], kde=True, bins=30, color='skyblue')
     plt.title(f'Гистограмма значений {target}')
     plt.xlabel(target)
     plt.ylabel('Частота')
     plt.show()
-    name_file = f'normal_distribution_{target[0]}.png'
-    save_plot(fig, name_file)
-  except FileNotFoundError as e:
-        print(f"Ошибка при загрузке данных: {e}")
-        sys.exit(1)
-
-# Визуализация распределения целевой переменной
-def visual_target(dataset, target):
-  try:
-    fig, ax = plt.subplots(figsize=(10, 8))
-    sns.histplot(dataset[target], kde=True, bins=30, color='skyblue')
-    plt.title(f'Распределение целевой переменной ({target})')
-    plt.xlabel(target)
-    plt.ylabel('Частота')
-    plt.show()
-    name_file = f'distribution_{target[0]}.png'
+    name_file = f'distribution_{target}.png'
     save_plot(fig, name_file)
     print("\nОписание целевой переменной:")
-    print(dataset.describe())
+    print(dataset[target].describe())
   except FileNotFoundError as e:
         print(f"Ошибка при загрузке данных: {e}")
         sys.exit(1)
@@ -71,7 +53,7 @@ def visual_by_price(dataset, column):
     grouped_data = dataset.groupby(column)['price'].mean().reset_index()
 
     # Построение графика
-    fig, ax = plt.subplots(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(10, 5))
     sns.barplot(x=column, y='price', data=grouped_data, palette='viridis')
     plt.title(f'Средняя цена по {column}')
     plt.xlabel(column)
@@ -99,8 +81,8 @@ def visual_predictions(y_test, y_pred, name, results):
 
     # Визуализация предсказанных и фактических значений
     fig, ax = plt.subplots(figsize=(10, 6))
-    plt.scatter(range(len(y_test)), y_test, color='blue', label='Фактические значения')
-    plt.scatter(range(len(y_test)), y_pred, color='red', label='Предсказанные значения')
+    plt.scatter(range(len(y_test[start_index:end_index])), y_test[start_index:end_index], color='blue', label='Фактические значения')
+    plt.scatter(range(len(y_test[start_index:end_index])), y_pred[start_index:end_index], color='red', label='Предсказанные значения')
     plt.xlabel('Наблюдение')
     plt.ylabel('Значение')
     plt.title(f'Фактические и предсказанные значения ({name})')
@@ -121,7 +103,7 @@ def visual_metrics(metrics):
 
     # Визуализация по метрикам
     for name, metric in dataset_regressors.items():    
-      fig, ax = plt.subplots(figsize=(8, 6))
+      fig, ax = plt.subplots(figsize=(6, 4))
       plt.barh(metric.keys(), metric, color='skyblue')
       plt.xlabel(name)
       plt.title(f'Сравнение моделей по {name}')
