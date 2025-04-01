@@ -28,7 +28,7 @@ def classifier_data(dataset):
         X, y, test_size=0.2, random_state=42
     )
 
-    # Регрессоры
+    # Классификаторы
     classifiers = {
         "Gradient Boosting": GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42),
         "ExtraTreesClassifier": ExtraTreesClassifier(n_estimators=100, max_features='sqrt', random_state=42),
