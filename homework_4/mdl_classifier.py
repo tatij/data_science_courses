@@ -15,7 +15,7 @@ import time
 sys.path.append('/content/sample_data')
 import mdl_visualization as visual
 
-# Визуализация роста цен по признакам
+# Функция обучения моделей
 def classifier_data(dataset):
   try:
     dataset.scaler = StandardScaler()
