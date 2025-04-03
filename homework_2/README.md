@@ -9,7 +9,7 @@
 <h2>Данные:</h2>
 <p>
     <ul>
-        <li><b>Dataset:</b>dataset_laptop</li>
+        <li><b>Dataset:</b> dataset_laptop</li>
         <li><b>Features:</b> Brand, Processor, RAM (GB), Storage, GPU, Screen Size (inch), Resolution, Battery Life (hours), Weight (kg), Operating System, Price ($).</li>
     </ul>
 </p>
