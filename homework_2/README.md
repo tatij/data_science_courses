@@ -21,6 +21,7 @@
         <li><b>mdl_analysis:</b> статистическая информация и анализ данных.</li>
         <li><b>mdl_preprocessing:</b> предобработка данных.</li>
         <li><b>mdl_visualization:</b> визуализация графиков проекта</li>
+        <li><b>dataset_laptop:</b> датасет проекта</li>
     </ul>
 </p>
 <p>Папки:
